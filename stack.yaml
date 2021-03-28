@@ -1,0 +1,8 @@
+resolver: lts-17.8
+packages:
+  - .
+extra-deps:
+  - hakyll-4.14.0.0
+  - git: https://github.com/waddlaw/hakyll-sass.git
+    commit: c6339eed1b39a370d95620326e760b5e66e576f6 # hakyll-sass-0.3.1
+    
