@@ -1,0 +1,18 @@
+---
+layout: article
+title:  LTspice
+excerpt: LTspice is freeware computer software implementing a SPICE electronic circuit simulator, produced by semiconductor manufacturer Linear Technology.
+author: Szymon Bęczkowski
+category: electronics
+tags: [simulations, basics]
+---
+
+LTspice is freeware computer software implementing a SPICE electronic circuit simulator, produced by semiconductor manufacturer Linear Technology, now part of Analog Devices. It is used in-house at Linear Technology for IC design, and the most widely distributed and used SPICE program in the industry. LTspice is not artificially crippled to limit its capabilities (no node limits, no component limits, no subcircuit limits).
+
+## Overview
+
+LTspice provides schematic capture to enter an electronic schematic for an electronic circuit, an enhanced SPICE type analog electronic circuit simulator, and a waveform viewer to show the results of the simulation. Circuit simulation analysis based on transient, noise, AC, DC, DC transfer function, DC operating point can be performed and plotted as well as fourier analysis. Heat dissipation of components can be calculated and efficiency reports can also be generated.[citation needed] It has enhancements and specialized models to speed the simulation of switched-mode power supplies (SMPS) in DC-to-DC converters.
+
+LTspice does not generate printed circuit board (PCB) layouts, but netlists can be exported to layout programs. While LTspice does support simple logic gate simulation, it is not designed specifically for simulating logic circuits.
+
+It is used by many users in fields including radio frequency electronics, power electronics, audio electronics, digital electronics, and other disciplines.

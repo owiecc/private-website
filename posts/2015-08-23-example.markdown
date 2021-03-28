@@ -1,0 +1,53 @@
+---
+title: Example post
+---
+
+Mauris in lorem nisl. Maecenas tempus facilisis ante, eget viverra nisl
+tincidunt et. Donec turpis lectus, mattis ac malesuada a, accumsan eu libero.
+Morbi condimentum, tortor et tincidunt ullamcorper, sem quam pretium nulla, id
+convallis lectus libero nec turpis. Proin dapibus nisi id est sodales nec
+ultrices tortor pellentesque.
+
+Lines (that is, $f(x) = mx + b$) are of degree 1, whereas quadratics (that is, 
+$f(x) = ax^2 + bx + c$) are of degree 2. Solve quadratics with the quadratic
+formula:
+
+$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+
+Enough high school algebra for now!
+
+Vivamus vel nisi ac lacus sollicitudin vulputate
+ac ut ligula. Nullam feugiat risus eget eros gravida in molestie sapien euismod.
+Nunc sed hendrerit orci. Nulla mollis consequat lorem ac blandit. Ut et turpis
+mauris. Nulla est odio, posuere id ullamcorper sit amet, tincidunt vel justo.
+Curabitur placerat tincidunt varius. 
+
+```python
+def hello(x):
+    print("Hello,", x)
+```
+
+Nulla vulputate, ipsum eu consectetur
+mollis, dui nibh aliquam neque, at ultricies leo ligula et arcu. 
+
+```julia
+import Base.Sort
+struct BubbleSortAlg <: Sort.Algorithm end
+const BubbleSort = BubbleSortAlg()
+
+function Base.sort!(v::AbstractVector, lo::Int, hi::Int, ::BubbleSortAlg, o::Sort.Ordering)
+    while true
+        clean = true
+        for i = lo:hi-1
+            if Sort.lt(o, v[i+1], v[i])
+                v[i+1], v[i] = v[i], v[i+1]
+                clean = false
+            end
+        end
+        clean && break
+    end
+    return v
+end
+```
+
+These libraries also give you precise control over the output DPI and over the dimensions of the image in the HTML output, so it can be configured to give crisp images even on high DPI displays, like Retina displays.
