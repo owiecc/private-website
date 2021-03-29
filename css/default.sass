@@ -15,6 +15,8 @@ body
     background: var(--color-background)
     color: var(--color-main)
     font-family: "Merriweather", serif
+    @include size-s
+        margin: 1rem
 
 #blog-post
     margin: auto
@@ -23,8 +25,6 @@ body
         padding-right: $note-column
     @include size-m
         width: $reading-column
-    @include size-s
-        width: 95vw
     h1
         font-size: 1.8rem
         @include size-ml
