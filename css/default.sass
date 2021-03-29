@@ -2,6 +2,12 @@
 @import "screen-sizes"
 @import "colors"
 
+$reading-column: 38rem
+$note-column: 20rem
+$margin-column: 2rem
+$wide-screen: $margin-column + $reading-column + $note-column + $margin-column // 68rem
+$narrow-screen: $margin-column + $reading-column + $margin-column //48rem
+
 html
     font-size: 18px
 
@@ -13,10 +19,10 @@ body
 #blog-post
     margin: auto
     @include size-l
-        width: 60rem
-        padding-right: 20rem
+        width: $reading-column+$note-column
+        padding-right: $note-column
     @include size-m
-        width: 40rem
+        width: $reading-column
     @include size-s
         width: 95vw
     h1
