@@ -8,11 +8,10 @@ html
 body
     background: var(--color-background)
     color: var(--color-main)
-    border: 1px solid red
-    margin: auto
     font-family: "Merriweather", serif
 
-body        
+#blog-post
+    margin: auto
     @include size-l
         width: 60rem
         padding-right: 20rem
@@ -20,8 +19,6 @@ body
         width: 40rem
     @include size-s
         width: 95vw
-
-.blog-post
     h1
         font-size: 1.8rem
         @include size-ml
@@ -30,4 +27,10 @@ body
         font-size: 1.4rem
     h3
         font-size: 1.2rem
-    
+    p
+        line-height: 1.8em
+    pre.sourceCode
+        font-family: "Fira Code", monospace
+        font-size: 1.0rem
+        overflow: scroll // TODO this does not work
+        
