@@ -39,4 +39,20 @@ body
         font-family: "Fira Code", monospace
         font-size: 1.0rem
         overflow: scroll // TODO this does not work
-        
+    .marginnote
+        &:before
+            content: "("
+        &:after
+            content: ")"
+        @include size-l
+            color: var(--color-accent-a)
+            float: right
+            padding-left: $note-column/10
+            margin-right: -$note-column
+            width: $note-column
+            font-size: 0.8rem
+            line-height: 1.3rem
+            &:before
+                content: ""
+            &:after
+                content: "."
