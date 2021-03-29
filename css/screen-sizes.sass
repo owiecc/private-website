@@ -1,0 +1,18 @@
+$wide-screen: 70rem
+$narrow-screen: 48rem
+
+@mixin size-s
+    @media screen and (max-width: #{$narrow-screen})
+        @content
+
+@mixin size-m
+    @media screen and (min-width: #{$narrow-screen}) and (max-width: #{$wide-screen})
+        @content
+
+@mixin size-l
+    @media screen and (min-width: #{$wide-screen})
+        @content
+
+@mixin size-ml
+    @media screen and (min-width: #{$narrow-screen})
+        @content
