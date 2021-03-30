@@ -8,11 +8,19 @@ Morbi condimentum, tortor et tincidunt ullamcorper, sem quam pretium nulla, id
 convallis lectus libero nec turpis. Proin dapibus nisi id est sodales nec
 ultrices tortor pellentesque.
 
+For $f \in L^1(\R)$, we define its *Fourier transform*
+$\hat{f}\colon \R \to \Cplx$ to be
+\begin{align*}
+ \hat{f}(\xi)
+ =
+ \int_{-\infty}^\infty f(x) \E^{-\im 2\pi x \xi}\dif x.
+\end{align*}
+
 Lines (that is, $f(x) = mx + b$) are of degree 1, whereas quadratics (that is, 
 $f(x) = ax^2 + bx + c$) are of degree 2. Solve quadratics with the quadratic
 formula:
 
-$$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$$
+$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
 
 Enough high school algebra for now!
 
