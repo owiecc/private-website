@@ -70,8 +70,8 @@ postCtx =
 opts :: LaTeXFilterOptions
 opts = def
   { baseFontSize = 16
-  , cacheDir     = Just "cacheDir"
-  , tempDir      = Just "tmpDir"
+  , cacheDir     = Just "_tex-cache"
+  , tempDir      = Just "_tex-tmp"
   }
 
 -- | Used as an argument of 'pandocCompilerWithTransformM'
