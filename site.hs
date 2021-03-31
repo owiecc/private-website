@@ -24,7 +24,10 @@ main = hakyll $ do
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompilerWithTransformM myTransform
+        compile $ pandocCompilerWithTransformM
+               defaultHakyllReaderOptions
+               defaultHakyllWriterOptions
+               myTransform
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -76,4 +79,4 @@ opts = def
 
 -- | Used as an argument of 'pandocCompilerWithTransformM'
 myTransform :: Pandoc -> Compiler Pandoc
-myTransform = unsafeCompiler $ getFilterM $ latexFilter opts
+myTransform = unsafeCompiler . getFilterM (latexFilter opts)
