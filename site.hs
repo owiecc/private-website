@@ -2,8 +2,9 @@
 {-# LANGUAGE OverloadedStrings #-}
 import           Data.Monoid (mappend)
 import           Hakyll
-
-
+import           Text.Pandoc
+import           Text.Pandoc.Fltr.LaTeXFilter
+import           Text.Pandoc.Filter.Utils
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
@@ -23,7 +24,10 @@ main = hakyll $ do
 
     match "posts/*" $ do
         route $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompilerWithTransformM
+               defaultHakyllReaderOptions
+               defaultHakyllWriterOptions
+               myTransform
             >>= loadAndApplyTemplate "templates/post.html"    postCtx
             >>= loadAndApplyTemplate "templates/default.html" postCtx
             >>= relativizeUrls
@@ -64,3 +68,15 @@ postCtx :: Context String
 postCtx =
     dateField "date" "%B %e, %Y" `mappend`
     defaultContext
+
+-- | See the definitions for explanation of each option.
+opts :: LaTeXFilterOptions
+opts = def
+  { baseFontSize = 16
+  , cacheDir     = Just "_tex-cache"
+  , tempDir      = Just "_tex-tmp"
+  }
+
+-- | Used as an argument of 'pandocCompilerWithTransformM'
+myTransform :: Pandoc -> Compiler Pandoc
+myTransform = unsafeCompiler . getFilterM (latexFilter opts)

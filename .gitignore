@@ -3,3 +3,5 @@ _cache/
 _site/
 _content/
 .stack-work/
+/_tex-tmp
+/_tex-cache

@@ -57,3 +57,8 @@ body
                 content: ""
             &:after
                 content: "."
+    .math, .noenv // LaTeX inline math
+        display: inline-block
+    .tex:not(.math):not(.noenv) // LaTeX block math or environments
+        display: block
+        margin: 0.5rem auto
