@@ -10,5 +10,10 @@ executable site
                   , fl-tr
                   , pandoc
                   , pandoc-utils
+                  , time
+                  , filepath
+                  , unordered-containers
+                  , blaze-html
+                  , hashable
   ghc-options:      -threaded
   default-language: Haskell2010
