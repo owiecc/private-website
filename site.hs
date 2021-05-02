@@ -86,7 +86,6 @@ main = hakyll $ do
                 >>= saveSnapshot "teaser"
                 >>= loadAndApplyTemplate "templates/post.html"    postContext
                 >>= saveSnapshot "content"
-                >>= loadAndApplyTemplate "templates/post-with-pagination.html" postContext
                 >>= loadAndApplyTemplate "templates/default.html" postContext
                 >>= relativizeUrls
 
@@ -139,6 +138,7 @@ opts = def
 myTransform :: Pandoc -> Compiler Pandoc
 myTransform = unsafeCompiler . getFilterM (latexFilter opts)
 
+--------------------------------------------------------------------------------
 rulesForTags :: Tags -> (String -> String) -> Rules ()
 rulesForTags tags titleForTag =
     tagsRules tags $ \tag pattern -> do
