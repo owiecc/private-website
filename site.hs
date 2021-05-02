@@ -47,8 +47,8 @@ main = hakyll $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "posts/*" $ do
-        route $ setExtension "html"
+--    match "posts/*" $ do
+--        route $ setExtension "html"
 
     tags <- buildTags postsGlob (fromCapture "tags/*.html")
 
