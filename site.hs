@@ -50,17 +50,6 @@ main = hakyll $ do
     match "posts/*" $ do
         route $ setExtension "html"
 
-  --    match "posts/*" $ do
-  --      route $ setExtension "html"
-  --      compile $ pandocCompilerWithTransformM
-  --             defaultHakyllReaderOptions
-  --             defaultHakyllWriterOptions
-  --             myTransform
-  --          >>= loadAndApplyTemplate "templates/post.html"    postCtx
-  --          >>= loadAndApplyTemplate "templates/default.html" postCtx
-  --          >>= relativizeUrls
-
-  -- build up tags
     tags <- buildTags postsGlob (fromCapture "tags/*.html")
 
     categories <- buildCategories postsGlob (fromCapture "categories/*.html")
@@ -69,18 +58,10 @@ main = hakyll $ do
 
     rulesForTags tags (\tag -> "Posts tagged \"" ++ tag ++ "\"")
 
-    allPosts <- getMatches postsGlob
-    let sortedPosts = sortIdentifiersByDate allPosts
-        -- build hashmap of prev/next posts
-        (prevPostHM, nextPostHM) = buildAdjacentPostsHashMap sortedPosts
-
     match postsGlob $ do
         route $ setExtension "html"
         compile $ do
-            let postContext =
-                    field "nextPost" (lookupPostUrl nextPostHM) `mappend`
-                    field "prevPost" (lookupPostUrl prevPostHM) `mappend`
-                    postCtxWithTags tags
+            let postContext = postCtxWithTags tags
 
             pandocCompiler
                 >>= saveSnapshot "teaser"
@@ -103,7 +84,6 @@ main = hakyll $ do
                 >>= loadAndApplyTemplate "templates/default.html" archiveCtx
                 >>= relativizeUrls
 
-
     match "index.html" $ do
         route idRoute
         compile $ do
@@ -118,7 +98,6 @@ main = hakyll $ do
                 >>= relativizeUrls
 
     match "templates/*" $ compile templateBodyCompiler
-
 
 --------------------------------------------------------------------------------
 postCtx :: Context String
@@ -155,7 +134,6 @@ rulesForTags tags titleForTag =
             >>= loadAndApplyTemplate "templates/default.html" ctx
             >>= relativizeUrls
 
-
 sortIdentifiersByDate :: [Identifier] -> [Identifier]
 sortIdentifiersByDate identifiers =
     reverse $ sortBy byDate identifiers
@@ -165,23 +143,6 @@ sortIdentifiersByDate identifiers =
             fn2 = takeFileName $ toFilePath id2
             parseTime' fn = parseTimeM True defaultTimeLocale "%Y-%m-%d" $ intercalate "-" $ take 3 $ splitAll "-" fn
         in compare ((parseTime' fn1) :: Maybe UTCTime) ((parseTime' fn2) :: Maybe UTCTime)
-
-buildAdjacentPostsHashMap :: [Identifier] -> (AdjPostHM, AdjPostHM)
-buildAdjacentPostsHashMap posts =
-    let buildHM :: [Identifier] -> [Identifier] -> AdjPostHM
-        buildHM [] _ = HM.empty
-        buildHM _ [] = HM.empty
-        buildHM (k:ks) (v:vs) = HM.insert k v $ buildHM ks vs
-    in (buildHM (tail posts) posts, buildHM posts (tail posts))
-
-type AdjPostHM = HM.HashMap Identifier Identifier
-
-lookupPostUrl :: AdjPostHM -> Item String -> Compiler String
-lookupPostUrl hm post =
-    let ident = itemIdentifier post
-        ident' = HM.lookup ident hm
-    in
-    (fmap (maybe empty $ toUrl) . (maybe empty getRoute)) ident'
 
 postCtxWithTags :: Tags -> Context String
 postCtxWithTags tags =
